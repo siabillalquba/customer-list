@@ -11,9 +11,11 @@ local florist in Batam
 
 ## Flowchart
 
-flowchart TD
-A[Start] -->B[Show All Contacts]
-B --> C{Get User Choice }
-C -->|One| D[Add Contact]
-C -->|Two| E[Edit Contact]
-C -->|Three| F[Delete Contact]
+```mermaid
+  graph TD;
+    A[Start]-->B[Show All Contacts];
+    B-->C{Get User Choice };
+    C-->|One| D[Add Contact];
+    C-->|Two| E[Edit Contact];
+    C-->|Three| F[Delete Contact];
+```
