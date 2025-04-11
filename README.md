@@ -1,13 +1,13 @@
-# customer-list
+# Customer List
 
-Customer List of Flozka
-local florist in Batam
+Customer list of Flozka, local florist in Batam
 
-## Feature
+## Features
 
-1. Add Contact
-2. Edit Contact
-3. Delete Contact
+1. Show Contacts
+2. Add Contact
+3. Edit Contact
+4. Delete Contact
 
 ## Flowchart
 
