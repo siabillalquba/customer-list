@@ -39,13 +39,14 @@ const contacts = [
 
 function displayContacts() {
   for (let i = 0; i < contacts.length; i++) {
+    const contact = contacts[i];
     console.log(`
-    Full Name   : ${contacts[i].name}
-    Age         : ${contacts[i].age} years old
-    Phone       : ${contacts[i].phone}
-    Email       : ${contacts[i].email}
-    Address     : ${contacts[i].address.street}, ${contacts[i].address.city}
-    ${contacts[i].isFavorited ? "Favorited" : ""}
+    Full Name   : ${contact.name}
+    Age         : ${contact.age} years old
+    Phone       : ${contact.phone}
+    Email       : ${contact.email}
+    Address     : ${contact.address.street}, ${contact.address.city}
+    ${contact.isFavorited ? "Favorited" : ""}
   `);
   }
 }
