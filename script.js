@@ -9,6 +9,7 @@ const contacts = [
       street: "Jalan Ir Soekarno No. 17845",
       city: "Batam",
     },
+    isFavorited: true,
   },
   {
     id: 2,
@@ -20,6 +21,7 @@ const contacts = [
       street: "Foosha Village 1",
       city: "East Blue",
     },
+    isFavorited: true,
   },
   {
     id: 3,
@@ -31,18 +33,21 @@ const contacts = [
       street: "Shimotsuki Village 1",
       city: "East Blue",
     },
+    isFavorited: false,
   },
 ];
 
-for (let i = 0; i < contacts.length; i++) {
-  console.log(`
-    ID          : ${contacts[i].id}
+function displayContacts() {
+  for (let i = 0; i < contacts.length; i++) {
+    console.log(`
     Full Name   : ${contacts[i].name}
-    Age         : ${contacts[i].age}
+    Age         : ${contacts[i].age} years old
     Phone       : ${contacts[i].phone}
     Email       : ${contacts[i].email}
     Address     : ${contacts[i].address.street}, ${contacts[i].address.city}
+    ${contacts[i].isFavorited ? "Favorited" : ""}
   `);
+  }
 }
 
-console.log(contacts);
+displayContacts();
