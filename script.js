@@ -82,6 +82,19 @@ function addContacts(
   });
 }
 
+function searchContact(search) {
+  const foundName = contacts.find((contact) => contact.name.includes(search));
+  console.log(foundName);
+}
+
+function deleteContact() {
+  //
+}
+
+function updateContact() {
+  //
+}
+
 addContacts(
   "Vinsmoke Sanji",
   27,
@@ -93,3 +106,5 @@ addContacts(
   false
 );
 displayContacts();
+
+searchContact("R");

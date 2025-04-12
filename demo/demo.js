@@ -12,6 +12,32 @@ const contacts = [
     },
     isFavorited: true,
   },
+  {
+    id: 2,
+    age: 25,
+    name: "Monkey D Luffy",
+    email: "mugiwara@pirates.com",
+    phone: "+2182233445566",
+    address: {
+      street: "Foosha Village 1",
+      city: "East Blue",
+      country: "Indonesia",
+    },
+    isFavorited: true,
+  },
+  {
+    id: 3,
+    age: 26,
+    name: "Roronoa Zoro",
+    email: "marimo@pirates.com",
+    phone: "+2183344556677",
+    address: {
+      street: "Shimotsuki Village 1",
+      city: "East Blue",
+      country: "Indonesia",
+    },
+    isFavorited: false,
+  },
 ];
 
 function displayContacts() {
@@ -30,39 +56,10 @@ function displayContacts() {
   }
 }
 
-function addContacts(
-  name,
-  age,
-  phone,
-  email,
-  street,
-  city,
-  country,
-  isFavorited
-) {
-  const lastContact = contacts[contacts.length - 1];
-  const lastID = lastContact.id;
-  const nextID = lastID + 1;
-
-  contacts.push({
-    id: nextID,
-    name,
-    age,
-    phone,
-    email,
-    address: { street, city, country },
-    isFavorited,
-  });
+function searchContact(search) {
+  const foundName = contacts.find((contact) => contact.name.includes(search));
+  console.log(foundName);
 }
 
-addContacts(
-  "Vinsmoke Sanji",
-  27,
-  "+21123123",
-  "sobamask@pirates.com",
-  "Baratie Work",
-  "East Blue",
-  "Indonesia",
-  false
-);
-displayContacts();
+searchContact("R");
+//displayContacts();
