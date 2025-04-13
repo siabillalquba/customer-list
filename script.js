@@ -3,7 +3,7 @@ const contacts = [
     id: 1,
     age: 28,
     name: "Sia Billal Quba",
-    email: "siabillal@gmail.com",
+    email: "siabillalquba@example.com",
     phone: "+6281122334455",
     address: {
       street: "Jalan Ir Soekarno No. 17845",
@@ -14,29 +14,29 @@ const contacts = [
   },
   {
     id: 2,
-    age: 25,
-    name: "Monkey D Luffy",
-    email: "mugiwara@pirates.com",
-    phone: "+2182233445566",
+    age: 83,
+    name: "Bacharuddin Jusuf Habibie",
+    email: "bjhabibie@example.com",
+    phone: "+6282233445566",
     address: {
-      street: "Foosha Village 1",
-      city: "East Blue",
-      country: "Indonesia",
+      street: "Templergraben 55",
+      city: "Aachen",
+      country: "Germany",
     },
     isFavorited: true,
   },
   {
     id: 3,
-    age: 26,
-    name: "Roronoa Zoro",
-    email: "marimo@pirates.com",
-    phone: "+2183344556677",
+    age: 55,
+    name: "Anies Rasyid Baswedan",
+    email: "aniesbaswedan@example.com",
+    phone: "+6283344556677",
     address: {
-      street: "Shimotsuki Village 1",
-      city: "East Blue",
-      country: "Indonesia",
+      street: "College Park",
+      city: "Maryland",
+      country: "United States",
     },
-    isFavorited: false,
+    isFavorited: true,
   },
 ];
 
@@ -83,7 +83,7 @@ function addContacts(
 }
 
 function searchContact(search) {
-  const foundName = contacts.find((contact) => contact.name.includes(search));
+  const foundName = contacts.filter((contact) => contact.name.includes(search));
   console.log(foundName);
 }
 
@@ -96,15 +96,15 @@ function updateContact() {
 }
 
 addContacts(
-  "Vinsmoke Sanji",
-  27,
-  "+21123123",
-  "sobamask@pirates.com",
-  "Baratie Work",
-  "East Blue",
+  "Novel Baswedan",
+  47,
+  "+6284455667788",
+  "novelbaswedan@example.com",
+  "Jalan Deposito T8",
+  "Jakarta",
   "Indonesia",
   false
 );
 displayContacts();
 
-searchContact("R");
+searchContact("Baswedan");
