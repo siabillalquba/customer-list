@@ -112,8 +112,11 @@ function deleteContact(remove) {
   allContacts.splice(removeContact.id - 1, 1);
 }
 
-function updateContact() {
-  //
+function updateContact(originalName, updatedName) {
+  const editContact = allContacts.find((contact) =>
+    contact.name.includes(originalName)
+  );
+  console.log(`Edit: ${editContact.name}`);
 }
 
 displayContacts(allContacts);
@@ -133,4 +136,7 @@ displayContacts(allContacts);
 searchContact("Baswedan");
 
 deleteContact("Habibie");
+displayContacts(allContacts);
+
+updateContact("Giring Ganesha", "Giring Nidji");
 displayContacts(allContacts);
