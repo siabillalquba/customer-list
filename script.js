@@ -1,4 +1,4 @@
-const contacts = [
+const allContacts = [
   {
     id: 1,
     age: 28,
@@ -40,7 +40,7 @@ const contacts = [
   },
 ];
 
-function displayContacts() {
+function displayContacts(contacts) {
   for (let i = 0; i < contacts.length; i++) {
     const contact = contacts[i];
     console.log(`
@@ -67,11 +67,11 @@ function addContacts(
   country,
   isFavorited
 ) {
-  const lastContact = contacts[contacts.length - 1];
+  const lastContact = allContacts[allContacts.length - 1];
   const lastID = lastContact.id;
   const nextID = lastID + 1;
 
-  contacts.push({
+  allContacts.push({
     id: nextID,
     name,
     age,
@@ -83,12 +83,18 @@ function addContacts(
 }
 
 function searchContact(search) {
-  const foundName = contacts.filter((contact) => contact.name.includes(search));
-  console.log(foundName);
+  const foundName = allContacts.filter((contact) =>
+    contact.name.includes(search)
+  );
+  console.log("Search Result:");
+  displayContacts(foundName);
 }
 
-function deleteContact() {
-  //
+function deleteContact(removeContact) {
+  const removeContact = allContacts.find((contact) =>
+    contact.name.includes(search)
+  );
+  console.log("removeContact");
 }
 
 function updateContact() {
@@ -105,6 +111,5 @@ addContacts(
   "Indonesia",
   false
 );
-displayContacts();
-
+displayContacts(allContacts);
 searchContact("Baswedan");
