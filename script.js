@@ -38,6 +38,19 @@ const allContacts = [
     },
     isFavorited: true,
   },
+  {
+    id: 4,
+    age: 55,
+    name: "Giring Ganesha",
+    email: "giring@example.com",
+    phone: "+6284455667788",
+    address: {
+      street: "Jl Deplu Raya",
+      city: "Jakarta",
+      country: "Indonesia",
+    },
+    isFavorited: false,
+  },
 ];
 
 function displayContacts(contacts) {
@@ -80,6 +93,7 @@ function addContacts(
     address: { street, city, country },
     isFavorited,
   });
+  console.log(`Add: ${name}`);
 }
 
 function searchContact(search) {
@@ -90,26 +104,33 @@ function searchContact(search) {
   displayContacts(foundName);
 }
 
-function deleteContact(removeContact) {
+function deleteContact(remove) {
   const removeContact = allContacts.find((contact) =>
-    contact.name.includes(search)
+    contact.name.includes(remove)
   );
-  console.log("removeContact");
+  console.log(`Delete: ${removeContact.name}`);
+  allContacts.splice(removeContact.id - 1, 1);
 }
 
 function updateContact() {
   //
 }
 
+displayContacts(allContacts);
+
 addContacts(
   "Novel Baswedan",
   47,
-  "+6284455667788",
+  "+6285566778899",
   "novelbaswedan@example.com",
   "Jalan Deposito T8",
   "Jakarta",
   "Indonesia",
-  false
+  true
 );
 displayContacts(allContacts);
+
 searchContact("Baswedan");
+
+deleteContact("Habibie");
+displayContacts(allContacts);
