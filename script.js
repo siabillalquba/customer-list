@@ -23,7 +23,7 @@ const allContacts = [
       city: "Aachen",
       country: "Germany",
     },
-    isFavorited: true,
+    isFavorited: false,
   },
   {
     id: 3,
@@ -108,8 +108,12 @@ function deleteContact(remove) {
   const removeContact = allContacts.find((contact) =>
     contact.name.includes(remove)
   );
-  console.log(`Delete: ${removeContact.name}`);
-  allContacts.splice(removeContact.id - 1, 1);
+  if (removeContact.isFavorited == true) {
+    console.log("Can't remove favorited contact");
+  } else {
+    console.log(`Delete: ${removeContact.name}`);
+    allContacts.splice(removeContact.id - 1, 1);
+  }
 }
 
 function updateContact(originalName, updatedName) {
@@ -134,6 +138,9 @@ addContacts(
 displayContacts(allContacts);
 
 searchContact("Baswedan");
+
+deleteContact("Anies");
+displayContacts(allContacts);
 
 deleteContact("Habibie");
 displayContacts(allContacts);
