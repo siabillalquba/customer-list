@@ -1,4 +1,4 @@
-const allContacts = [
+let dataContacts = [
   {
     id: 1,
     age: 28,
@@ -54,8 +54,7 @@ const allContacts = [
 ];
 
 function displayContacts(contacts) {
-  for (let i = 0; i < contacts.length; i++) {
-    const contact = contacts[i];
+  contacts.forEach((contact) => {
     console.log(`
     ID: ${contact.id}  
     Full Name   : ${contact.name}
@@ -67,7 +66,7 @@ function displayContacts(contacts) {
     }
     ${contact.isFavorited ? "Favorited" : ""}
   `);
-  }
+  });
 }
 
 function addContacts(
@@ -80,11 +79,11 @@ function addContacts(
   country,
   isFavorited
 ) {
-  const lastContact = allContacts[allContacts.length - 1];
+  const lastContact = dataContacts[dataContacts.length - 1];
   const lastID = lastContact.id;
   const nextID = lastID + 1;
 
-  allContacts.push({
+  dataContacts.push({
     id: nextID,
     name,
     age,
@@ -97,7 +96,7 @@ function addContacts(
 }
 
 function searchContact(search) {
-  const foundName = allContacts.filter((contact) =>
+  const foundName = dataContacts.filter((contact) =>
     contact.name.includes(search)
   );
   console.log("Search Result:");
@@ -105,25 +104,25 @@ function searchContact(search) {
 }
 
 function deleteContact(remove) {
-  const removeContact = allContacts.find((contact) =>
+  const removeContact = dataContacts.find((contact) =>
     contact.name.includes(remove)
   );
   if (removeContact.isFavorited == true) {
     console.log("Can't remove favorited contact");
   } else {
     console.log(`Delete: ${removeContact.name}`);
-    allContacts.splice(removeContact.id - 1, 1);
+    dataContacts.splice(removeContact.id - 1, 1);
   }
 }
 
 function updateContact(originalName, updatedName) {
-  const editContact = allContacts.find((contact) =>
+  const editContact = dataContacts.find((contact) =>
     contact.name.includes(originalName)
   );
   console.log(`Edit: ${editContact.name}`);
 }
 
-displayContacts(allContacts);
+displayContacts(dataContacts);
 
 addContacts(
   "Novel Baswedan",
@@ -135,15 +134,15 @@ addContacts(
   "Indonesia",
   true
 );
-displayContacts(allContacts);
+displayContacts(dataContacts);
 
 searchContact("Baswedan");
 
 deleteContact("Anies");
-displayContacts(allContacts);
+displayContacts(dataContacts);
 
 deleteContact("Habibie");
-displayContacts(allContacts);
+displayContacts(dataContacts);
 
 updateContact("Giring Ganesha", "Giring Nidji");
-displayContacts(allContacts);
+displayContacts(dataContacts);
