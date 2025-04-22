@@ -93,34 +93,46 @@ function addContact(
     isFavorited,
   };
   dataContacts.push(newContact);
-  console.log(`Add: ${name}`);
+  console.log(`Added: ${name}`);
 }
 
-function searchContact(search) {
-  const foundName = dataContacts.filter((contact) =>
-    contact.name.includes(search)
+function searchContact(contacts, keyword) {
+  const foundContacts = contacts.filter((contact) =>
+    contact.name.includes(keyword)
   );
-  console.log("Search Result:");
-  displayContacts(foundName);
+  console.log(`Found Contacts: ${keyword}`);
+  return foundContacts;
 }
 
-function deleteContact(remove) {
-  const removeContact = dataContacts.find((contact) =>
-    contact.name.includes(remove)
-  );
-  if (removeContact.isFavorited == true) {
-    console.log("Can't remove favorited contact");
-  } else {
-    console.log(`Delete: ${removeContact.name}`);
-    dataContacts.splice(removeContact.id - 1, 1);
-  }
+function deleteContact(contacts, id) {
+  const updatedContacts = contacts.filter((contact) => contact.id !== id);
+  const deletedContacts = contacts.find((contact) => contact.id == id);
+  console.log(`Deleted: ${deletedContacts.name}`);
+  dataContacts = updatedContacts;
+
+  // const removeContact = dataContacts.find((contact) =>
+  //   contact.name.includes(remove)
+  // );
+  // if (removeContact.isFavorited == true) {
+  //   console.log("Can't delete favorited contact");
+  // } else {
+  //   console.log(`Deleted: ${removeContact.name}`);
+  //   dataContacts.splice(removeContact.id - 1, 1);
+  // }
 }
 
-function updateContact(originalName, updatedName) {
-  const editContact = dataContacts.find((contact) =>
-    contact.name.includes(originalName)
-  );
-  console.log(`Edit: ${editContact.name}`);
+function updateContactById(
+  id,
+  name,
+  age,
+  phone,
+  email,
+  street,
+  city,
+  country,
+  isFavorited
+) {
+  // TODO
 }
 
 displayContacts(dataContacts);
@@ -137,13 +149,11 @@ addContact(
 );
 displayContacts(dataContacts);
 
-searchContact("Baswedan");
+const foundContacts = searchContact(dataContacts, "Baswedan");
+displayContacts(foundContacts);
 
-deleteContact("Anies");
+deleteContact(dataContacts, 1);
 displayContacts(dataContacts);
 
-deleteContact("Habibie");
-displayContacts(dataContacts);
-
-updateContact("Giring Ganesha", "Giring Nidji");
-displayContacts(dataContacts);
+// deleteContact("Anies");
+// displayContacts(dataContacts);
