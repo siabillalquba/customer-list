@@ -69,7 +69,7 @@ function displayContacts(contacts) {
   });
 }
 
-function addContacts(
+function addContact(
   name,
   age,
   phone,
@@ -83,7 +83,7 @@ function addContacts(
   const lastID = lastContact.id;
   const nextID = lastID + 1;
 
-  dataContacts.push({
+  const newContact = {
     id: nextID,
     name,
     age,
@@ -91,7 +91,8 @@ function addContacts(
     email,
     address: { street, city, country },
     isFavorited,
-  });
+  };
+  dataContacts.push(newContact);
   console.log(`Add: ${name}`);
 }
 
@@ -124,7 +125,7 @@ function updateContact(originalName, updatedName) {
 
 displayContacts(dataContacts);
 
-addContacts(
+addContact(
   "Novel Baswedan",
   47,
   "+6285566778899",
