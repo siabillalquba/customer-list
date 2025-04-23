@@ -1,7 +1,6 @@
 let dataContacts = [
   {
     id: 1,
-    age: 28,
     name: "Sia Billal Quba",
     email: "siabillalquba@example.com",
     phone: "+6281122334455",
@@ -10,11 +9,11 @@ let dataContacts = [
       city: "Batam",
       country: "Indonesia",
     },
+    age: 28,
     isFavorited: true,
   },
   {
     id: 2,
-    age: 83,
     name: "Bacharuddin Jusuf Habibie",
     email: "bjhabibie@example.com",
     phone: "+6282233445566",
@@ -23,11 +22,11 @@ let dataContacts = [
       city: "Aachen",
       country: "Germany",
     },
+    age: 83,
     isFavorited: false,
   },
   {
     id: 3,
-    age: 55,
     name: "Anies Baswedan",
     email: "aniesbaswedan@example.com",
     phone: "+6283344556677",
@@ -36,6 +35,7 @@ let dataContacts = [
       city: "Maryland",
       country: "United States",
     },
+    age: 55,
     isFavorited: true,
   },
 ];
@@ -83,72 +83,59 @@ function addContact(
   console.log(`Added: ${name}`);
 }
 
-function searchContact(contacts, keyword) {
+function searchContacts(contacts, keyword) {
   const foundContacts = contacts.filter((contact) =>
-    contact.name.includes(keyword)
+    contact.name.toLowerCase().includes(keyword.toLowerCase())
   );
-  console.log(`Found Contacts: ${keyword}`);
   return foundContacts;
 }
 
 function deleteContact(contacts, id) {
   const updatedContacts = contacts.filter((contact) => contact.id !== id);
-  const deletedContacts = contacts.find((contact) => contact.id == id);
-  console.log(`Deleted: ${deletedContacts.name}`);
+  console.log(`Deleted contact id:${id}`);
   dataContacts = updatedContacts;
-
-  // const removeContact = dataContacts.find((contact) =>
-  //   contact.name.includes(remove)
-  // );
-  // if (removeContact.isFavorited == true) {
-  //   console.log("Can't delete favorited contact");
-  // } else {
-  //   console.log(`Deleted: ${removeContact.name}`);
-  //   dataContacts.splice(removeContact.id - 1, 1);
-  // }
 }
 
-function updateContactById(
-  id,
-  name,
-  age,
-  phone,
-  email,
-  street,
-  city,
-  country,
-  isFavorited
-) {
-  const selectedContacts = dataContacts.find((contact) => contact.id == id);
+function updateContactById(id, newContactData) {
+  const updatedDataContacts = dataContacts.map((oneContact) => {
+    if (oneContact.id === id) {
+      return {
+        ...oneContact,
+        ...newContactData,
+      };
+    } else {
+      return oneContact;
+    }
+  });
 
-  const editedContact = {
-    id,
-    name,
-    age,
-    phone,
-    email,
-    address: { street, city, country },
-    isFavorited,
-  };
-  dataContacts.map;
+  dataContacts = updatedDataContacts;
 }
 
-displayContacts(dataContacts);
+// displayContacts(dataContacts);
 
-addContact(
-  "Novel Baswedan",
-  47,
-  "+6285566778899",
-  "novelbaswedan@example.com",
-  "Jalan Deposito T8",
-  "Jakarta",
-  "Indonesia",
-  true
-);
-displayContacts(dataContacts);
+// addContact(
+//   "Novel Baswedan",
+//   47,
+//   "+6285566778899",
+//   "novelbaswedan@example.com",
+//   "Jalan Deposito T8",
+//   "Jakarta",
+//   "Indonesia",
+//   true
+// );
+// displayContacts(dataContacts);
 
-const foundContacts = searchContact(dataContacts, "Baswedan");
-displayContacts(foundContacts);
+// const results = searchContacts(dataContacts, "baswedan");
+// displayContacts(results);
 
-deleteContact(dataContacts, 1);
+// deleteContact(dataContacts, 1);
+// displayContacts(dataContacts);
+
+updateContactById(1, {
+  name: "Billal Saja",
+  email: "billalsaja@example.com",
+  phone: "+621122334455",
+  age: 30,
+});
+
 displayContacts(dataContacts);
