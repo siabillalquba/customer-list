@@ -28,7 +28,7 @@ let dataContacts = [
   {
     id: 3,
     age: 55,
-    name: "Anies Rasyid Baswedan",
+    name: "Anies Baswedan",
     email: "aniesbaswedan@example.com",
     phone: "+6283344556677",
     address: {
@@ -37,19 +37,6 @@ let dataContacts = [
       country: "United States",
     },
     isFavorited: true,
-  },
-  {
-    id: 4,
-    age: 55,
-    name: "Giring Ganesha",
-    email: "giring@example.com",
-    phone: "+6284455667788",
-    address: {
-      street: "Jl Deplu Raya",
-      city: "Jakarta",
-      country: "Indonesia",
-    },
-    isFavorited: false,
   },
 ];
 
@@ -132,7 +119,18 @@ function updateContactById(
   country,
   isFavorited
 ) {
-  // TODO
+  const selectedContacts = dataContacts.find((contact) => contact.id == id);
+
+  const editedContact = {
+    id,
+    name,
+    age,
+    phone,
+    email,
+    address: { street, city, country },
+    isFavorited,
+  };
+  dataContacts.map;
 }
 
 displayContacts(dataContacts);
@@ -154,6 +152,3 @@ displayContacts(foundContacts);
 
 deleteContact(dataContacts, 1);
 displayContacts(dataContacts);
-
-// deleteContact("Anies");
-// displayContacts(dataContacts);
