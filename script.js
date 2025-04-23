@@ -84,9 +84,16 @@ function addContact(
 }
 
 function searchContact(contacts, keyword) {
-  const foundContacts = contacts.filter((contact) =>
-    contact.name.toLowerCase().includes(keyword.toLowerCase())
+  const foundContacts = contacts.filter(
+    (contact) =>
+      contact.name.toLowerCase().includes(keyword.toLowerCase()) ||
+      contact.phone.toLowerCase().includes(keyword.toLowerCase()) ||
+      contact.address.street.toLowerCase().includes(keyword.toLowerCase()) ||
+      contact.address.city.toLowerCase().includes(keyword.toLowerCase()) ||
+      contact.address.country.toLowerCase().includes(keyword.toLowerCase())
+    //    contact.age.includes(keyword)
   );
+
   console.log(`Found Contacts: ${keyword}`);
   return foundContacts;
 }
@@ -136,7 +143,7 @@ addContact(
 );
 displayContacts(dataContacts);
 
-const foundContacts = searchContact(dataContacts, "Baswedan");
+const foundContacts = searchContact(dataContacts, "Indonesia");
 displayContacts(foundContacts);
 
 deleteContact(dataContacts, 2);
