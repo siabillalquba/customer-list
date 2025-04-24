@@ -83,15 +83,15 @@ function addContact(
   console.log(`Added: ${name}`);
 }
 
-function searchContact(contacts, keyword) {
+function searchContacts(contacts, keyword) {
   const foundContacts = contacts.filter(
     (contact) =>
       contact.name.toLowerCase().includes(keyword.toLowerCase()) ||
       contact.phone.toLowerCase().includes(keyword.toLowerCase()) ||
       contact.address.street.toLowerCase().includes(keyword.toLowerCase()) ||
       contact.address.city.toLowerCase().includes(keyword.toLowerCase()) ||
-      contact.address.country.toLowerCase().includes(keyword.toLowerCase())
-    //    contact.age.includes(keyword)
+      contact.address.country.toLowerCase().includes(keyword.toLowerCase()) ||
+      contact.age.toString().includes(keyword)
   );
 
   console.log(`Found Contacts: ${keyword}`);
@@ -99,7 +99,7 @@ function searchContact(contacts, keyword) {
 }
 
 function deleteContact(contacts, id) {
-  const updatedContacts = contacts.filter((contact) => contact.id !== id);
+  const updatedContacts = contacts.filter((oneContact) => oneContact.id !== id);
   console.log(`Deleted contact id: ${id}`);
   dataContacts = updatedContacts;
 
@@ -129,28 +129,46 @@ function updateContactById(id, newContactData) {
   dataContacts = updatedDataContacts;
 }
 
-displayContacts(dataContacts);
+// displayContacts(dataContacts);
 
-addContact(
-  "Novel Baswedan",
-  "+6285566778899",
-  "novelbaswedan@example.com",
-  "Jalan Deposito T8",
-  "Jakarta",
-  "Indonesia",
-  47,
-  true
-);
-displayContacts(dataContacts);
+// addContact(
+//   "Novel Baswedan",
+//   "+6285566778899",
+//   "novelbaswedan@example.com",
+//   "Jalan Deposito T8",
+//   "Jakarta",
+//   "Indonesia",
+//   47,
+//   true
+// );
+// displayContacts(dataContacts);
 
-const foundContacts = searchContact(dataContacts, "Indonesia");
-displayContacts(foundContacts);
+// const foundContacts = searchContacts(dataContacts, "Indonesia");
+// displayContacts(foundContacts);
 
-deleteContact(dataContacts, 2);
-displayContacts(dataContacts);
+// deleteContact(dataContacts, 2);
+// displayContacts(dataContacts);
 
-updateContactById(3, {
-  name: "Anies Rasyid Baswedan",
-  email: "arbaswedan@example.com",
-});
-displayContacts(dataContacts);
+// updateContactById(3, {
+//   name: "Anies Rasyid Baswedan",
+//   email: "arbaswedan@example.com",
+// });
+// displayContacts(dataContacts);
+
+function renderContacts() {
+  const dataContactsListElement = document.getElementById("data-contacts");
+
+  dataContactsListElement.innerHTML = dataContacts
+    .map((oneContact) => {
+      return `<li>
+  <h2>${oneContact.name}</h2>
+  <p>${oneContact.age} years old</p>
+  <p>${oneContact.phone}</p>
+  <p>${oneContact.email}</p>
+  <p>${oneContact.address.street}, ${oneContact.address.city}, ${oneContact.address.country}</p>
+  </li>`;
+    })
+    .join("");
+}
+
+renderContacts();
