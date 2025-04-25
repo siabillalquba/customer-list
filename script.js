@@ -166,6 +166,7 @@ function renderContacts() {
   <p>${oneContact.phone}</p>
   <p>${oneContact.email}</p>
   <p>${oneContact.address.street}, ${oneContact.address.city}, ${oneContact.address.country}</p>
+  <p>${oneContact.isFavorited}</p>
   </li>`;
     })
     .join("");
