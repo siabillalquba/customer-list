@@ -102,16 +102,6 @@ function deleteContact(contacts, id) {
   const updatedContacts = contacts.filter((oneContact) => oneContact.id !== id);
   console.log(`Deleted contact id: ${id}`);
   dataContacts = updatedContacts;
-
-  // const removeContact = dataContacts.find((contact) =>
-  //   contact.name.includes(remove)
-  // );
-  // if (removeContact.isFavorited == true) {
-  //   console.log("Can't delete favorited contact");
-  // } else {
-  //   console.log(`Deleted: ${removeContact.name}`);
-  //   dataContacts.splice(removeContact.id - 1, 1);
-  // }
 }
 
 function updateContactById(id, newContactData) {
@@ -129,45 +119,24 @@ function updateContactById(id, newContactData) {
   dataContacts = updatedDataContacts;
 }
 
-// displayContacts(dataContacts);
-
-// addContact(
-//   "Novel Baswedan",
-//   "+6285566778899",
-//   "novelbaswedan@example.com",
-//   "Jalan Deposito T8",
-//   "Jakarta",
-//   "Indonesia",
-//   47,
-//   true
-// );
-// displayContacts(dataContacts);
-
-// const foundContacts = searchContacts(dataContacts, "Indonesia");
-// displayContacts(foundContacts);
-
-// deleteContact(dataContacts, 2);
-// displayContacts(dataContacts);
-
-// updateContactById(3, {
-//   name: "Anies Rasyid Baswedan",
-//   email: "arbaswedan@example.com",
-// });
-// displayContacts(dataContacts);
-
 function renderContacts() {
   const dataContactsListElement = document.getElementById("data-contacts");
 
   dataContactsListElement.innerHTML = dataContacts
     .map((oneContact) => {
-      return `<li>
+      return `
+<li>
   <h2>${oneContact.name}</h2>
   <p>${oneContact.age} years old</p>
   <p>${oneContact.phone}</p>
   <p>${oneContact.email}</p>
-  <p>${oneContact.address.street}, ${oneContact.address.city}, ${oneContact.address.country}</p>
-  <p>${oneContact.isFavorited}</p>
-  </li>`;
+  <p>
+    ${oneContact.address.street},
+    ${oneContact.address.city},
+    ${oneContact.address.country}
+  </p>
+  <p>${oneContact.isFavorited ? "⭐ Favorited" : ""}</p>
+</li>`;
     })
     .join("");
 }
