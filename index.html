@@ -20,88 +20,69 @@
       </nav>
     </header>
 
-    <main>
-      <header id="content">
-        <form>
-          <div>
-            <label for="full-name">Full name:</label>
+    <main id="content">
+      <form method="post" id="contact-form">
+        <div>
+          <label for="name">Full name:</label>
+          <input
+            id="name"
+            name="name"
+            type="text"
+            placeholder="Sia Billal Quba"
+          />
+        </div>
+        <div>
+          <label for="age">Age:</label>
+          <input id="age" name="age" type="number" placeholder="28" />
+        </div>
+        <div>
+          <label for="phone">Phone:</label>
+          <input
+            id="phone"
+            name="phone"
+            type="tel"
+            placeholder="+6281122334455"
+          />
+        </div>
+        <div>
+          <label for="email">Email:</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            placeholder="siabillalquba@example.com"
+          />
+        </div>
+        <div>
+          <p>Address:</p>
+          <section>
+            <label for="street">Street:</label>
             <input
-              id="full-name"
-              name="fullName"
+              id="street"
+              name="street"
               type="text"
-              placeholder="Sia Billal Quba"
-              required
+              placeholder="Jalan Ir Soekarno No. 17845"
             />
-          </div>
-          <div>
-            <label for="age">Age:</label>
+          </section>
+          <section>
+            <label for="city">City:</label>
+            <input id="city" name="city" type="text" placeholder="Batam" />
+          </section>
+          <section>
+            <label for="country">Country:</label>
             <input
-              id="age"
-              name="age"
-              type="number"
-              placeholder="28"
-              required
+              id="country"
+              name="country"
+              type="text"
+              placeholder="Indonesia"
             />
-          </div>
-          <div>
-            <label for="phone">Phone:</label>
-            <input
-              id="phone"
-              name="phone"
-              type="phone"
-              placeholder="+6281122334455"
-              required
-            />
-          </div>
-          <div>
-            <label for="email">Email:</label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              placeholder="siabillalquba@example.com"
-              required
-            />
-          </div>
-          <div>
-            <p>Address:</p>
-            <section>
-              <label for="street">Street:</label>
-              <input
-                id="street"
-                name="street"
-                type="text"
-                placeholder="Jalan Ir Soekarno No. 17845"
-                required
-              />
-            </section>
-            <section>
-              <label for="city">City:</label>
-              <input
-                id="city"
-                name="city"
-                type="text"
-                placeholder="Batam"
-                required
-              />
-            </section>
-            <section>
-              <label for="country">Country:</label>
-              <input
-                id="country"
-                name="country"
-                type="text"
-                placeholder="Indonesia"
-                required
-              />
-            </section>
-          </div>
-        </form>
-        <button type="submit">Add contact</button>
+          </section>
+        </div>
+      <!-- </form> why ??? -->
+      <button type="submit">Add contact</button>
 
-        <p>List of all contacts</p>
-        <ul id="data-contacts"></ul>
-      </header>
+      <p>List of all contacts</p>
+      <ul id="data-contacts"></ul>
     </main>
 
     <footer id="footer">

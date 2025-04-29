@@ -1,3 +1,5 @@
+const contactFormElement = document.getElementById("contact-form");
+
 let dataContacts = [
   {
     id: 1,
@@ -56,31 +58,17 @@ function displayContacts(contacts) {
   });
 }
 
-function addContact(
-  name,
-  phone,
-  email,
-  street,
-  city,
-  country,
-  age,
-  isFavorited
-) {
+function addContact(contactData) {
   const lastContact = dataContacts[dataContacts.length - 1];
   const lastID = lastContact.id;
   const nextID = lastID + 1;
 
-  const newContact = {
+  const newContactData = {
     id: nextID,
-    name,
-    phone,
-    email,
-    address: { street, city, country },
-    age,
-    isFavorited,
+    ...contactData,
   };
-  dataContacts.push(newContact);
-  console.log(`Added: ${name}`);
+  dataContacts.push(newContactData);
+  //  console.log(`Added: ${name}`);
 }
 
 function searchContacts(contacts, keyword) {
@@ -104,12 +92,12 @@ function deleteContact(contacts, id) {
   dataContacts = updatedContacts;
 }
 
-function updateContactById(id, newContactData) {
+function updateContactById(id, updatedContactData) {
   const updatedDataContacts = dataContacts.map((oneContact) => {
     if (oneContact.id === id) {
       return {
         ...oneContact,
-        ...newContactData,
+        ...updatedContactData,
       };
     } else {
       return oneContact;
@@ -140,5 +128,28 @@ function renderContacts() {
     })
     .join("");
 }
+
+//function submitContact(event) {
+contactFormElement.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const formData = new FormData(contactFormElement);
+
+  const newContactFormData = {
+    name: String(formData.get("name")),
+    age: Number(formData.get("age")),
+    phone: String(formData.get("phone")),
+    email: String(formData.get("email")),
+    street: String(formData.get("street")),
+    city: String(formData.get("city")),
+    country: String(formData.get("country")),
+    //   isFavorited: Boolean(formData.get("isFavorited")),
+  };
+
+  addContact(newContactFormData);
+  renderContacts();
+});
+//}
+
+//contactFormElement.addEventListener("submit", submitContact);
 
 renderContacts();
