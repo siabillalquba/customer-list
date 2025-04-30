@@ -129,9 +129,10 @@ function renderContacts() {
     .join("");
 }
 
-//function submitContact(event) {
-contactFormElement.addEventListener("submit", (event) => {
+function submitContact(event) {
+  //contactFormElement.addEventListener("submit", (event) => {
   event.preventDefault();
+
   const formData = new FormData(contactFormElement);
 
   const newContactFormData = {
@@ -139,17 +140,23 @@ contactFormElement.addEventListener("submit", (event) => {
     age: Number(formData.get("age")),
     phone: String(formData.get("phone")),
     email: String(formData.get("email")),
-    street: String(formData.get("street")),
-    city: String(formData.get("city")),
-    country: String(formData.get("country")),
+    address: {
+      street: String(formData.get("address.street")),
+      city: String(formData.get("address.city")),
+      country: String(formData.get("address.country")),
+    },
+
     //   isFavorited: Boolean(formData.get("isFavorited")),
   };
 
   addContact(newContactFormData);
   renderContacts();
-});
-//}
+}
 
-//contactFormElement.addEventListener("submit", submitContact);
+// ---------------------------------
+// Program
+// ---------------------------------
+
+contactFormElement.addEventListener("submit", submitContact);
 
 renderContacts();
