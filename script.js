@@ -144,8 +144,7 @@ function submitContact(event) {
       city: String(formData.get("address.city")),
       country: String(formData.get("address.country")),
     },
-
-    //   isFavorited: Boolean(formData.get("isFavorited")),
+    isFavorited: Boolean(formData.get("isFavorited")),
   };
 
   addContact(newContactFormData);

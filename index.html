@@ -76,7 +76,12 @@
           </section>
           <section>
             <label for="address.city">City:</label>
-            <input id="address.city" name="address.city" type="text" placeholder="Batam" />
+            <input
+              id="address.city"
+              name="address.city"
+              type="text"
+              placeholder="Batam"
+            />
           </section>
           <section>
             <label for="address.country">Country:</label>
@@ -87,9 +92,19 @@
               placeholder="Indonesia"
             />
           </section>
+          <section>
+            <label for="isFavorited">
+              <input
+                id="isFavorited"
+                name="isFavorited"
+                type="checkbox"
+                value="Favorited"
+              />Favorited
+            </label>
+          </section>
         </div>
-      <!-- </form> why ??? -->
-      <button type="submit">Add contact</button>
+        <button type="submit">Add contact</button>
+      </form>
 
       <p>List of all contacts</p>
       <ul id="data-contacts"></ul>
