@@ -1,4 +1,5 @@
 const contactFormElement = document.getElementById("contact-form");
+const dataContactsListElement = document.getElementById("data-contacts");
 
 let dataContacts = [
   {
@@ -42,6 +43,10 @@ let dataContacts = [
   },
 ];
 
+// ---------------------------------
+// Function
+// ---------------------------------
+
 function displayContacts(contacts) {
   contacts.forEach((contact) => {
     console.log(`
@@ -68,7 +73,6 @@ function addContact(contactData) {
     ...contactData,
   };
   dataContacts.push(newContactData);
-  //  console.log(`Added: ${name}`);
 }
 
 function searchContacts(contacts, keyword) {
@@ -81,15 +85,15 @@ function searchContacts(contacts, keyword) {
       contact.address.country.toLowerCase().includes(keyword.toLowerCase()) ||
       contact.age.toString().includes(keyword)
   );
-
-  console.log(`Found Contacts: ${keyword}`);
   return foundContacts;
 }
 
-function deleteContact(contacts, id) {
-  const updatedContacts = contacts.filter((oneContact) => oneContact.id !== id);
-  console.log(`Deleted contact id: ${id}`);
+function deleteContactById(id) {
+  const updatedContacts = dataContacts.filter(
+    (oneContact) => oneContact.id !== id
+  );
   dataContacts = updatedContacts;
+  renderContacts();
 }
 
 function updateContactById(id, updatedContactData) {
@@ -108,8 +112,6 @@ function updateContactById(id, updatedContactData) {
 }
 
 function renderContacts() {
-  const dataContactsListElement = document.getElementById("data-contacts");
-
   dataContactsListElement.innerHTML = dataContacts
     .map((oneContact) => {
       return `
@@ -124,6 +126,10 @@ function renderContacts() {
     ${oneContact.address.country}
   </p>
   <p>${oneContact.isFavorited ? "⭐ Favorited" : ""}</p>
+  
+  <div>
+    <button onclick="deleteContactById(${oneContact.id})">Delete</button>
+  </div>
 </li>`;
     })
     .join("");
