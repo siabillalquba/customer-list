@@ -88,11 +88,24 @@ function searchContacts(contacts, keyword) {
   return foundContacts;
 }
 
-function deleteContactById(id) {
+// function deleteContactById(id) {
+//   const updatedContacts = dataContacts.filter(
+//     (oneContact) => oneContact.id !== id
+//   );
+//   dataContacts = updatedContacts;
+//   renderContacts();
+// }
+
+function deleteContactById(favorited, id) {
   const updatedContacts = dataContacts.filter(
     (oneContact) => oneContact.id !== id
   );
-  dataContacts = updatedContacts;
+  if (favorited) {
+    alert("Can't Delete Favorited Contact");
+  } else {
+    dataContacts = updatedContacts;
+  }
+
   renderContacts();
 }
 
@@ -128,7 +141,9 @@ function renderContacts() {
   <p>${oneContact.isFavorited ? "⭐ Favorited" : ""}</p>
   
   <div>
-    <button onclick="deleteContactById(${oneContact.id})">Delete</button>
+    <button onclick="deleteContactById(${oneContact.isFavorited}, ${
+        oneContact.id
+      })">Delete</button>
   </div>
 </li>`;
     })
