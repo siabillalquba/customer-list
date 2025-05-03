@@ -88,14 +88,6 @@ function searchContacts(contacts, keyword) {
   return foundContacts;
 }
 
-// function deleteContactById(id) {
-//   const updatedContacts = dataContacts.filter(
-//     (oneContact) => oneContact.id !== id
-//   );
-//   dataContacts = updatedContacts;
-//   renderContacts();
-// }
-
 function deleteContactById(favorited, id) {
   const updatedContacts = dataContacts.filter(
     (oneContact) => oneContact.id !== id
@@ -129,6 +121,7 @@ function renderContacts() {
     .map((oneContact) => {
       return `
 <li>
+  <a href="/contact/?id=${oneContact.id}">
   <h2>${oneContact.name}</h2>
   <p>${oneContact.age} years old</p>
   <p>${oneContact.phone}</p>
