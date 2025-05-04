@@ -44,51 +44,8 @@ let dataContacts = [
 ];
 
 // ---------------------------------
-// Storage Function
-// ---------------------------------
-
-function saveContacts(contacts) {
-  localStorage.setItem("address-book", JSON.stringify(contacts));
-}
-
-function loadContacts() {
-  const contacts = localStorage.getItem("address-book");
-  if (!contacts) {
-    saveContacts([]);
-  }
-  try {
-    return JSON.parse(contacts);
-  } catch (error) {
-    console.error("Failed to load contacts", error);
-  }
-}
-
-function loadContactById(id) {
-  const contacts = loadContacts();
-  const contact = contacts.find((contact) => contact.id === id);
-
-  return contact;
-}
-
-// ---------------------------------
 // Function
 // ---------------------------------
-
-// function displayContacts(contacts) {
-//   contacts.forEach((contact) => {
-//     console.log(`
-//     ID: ${contact.id}
-//     Full Name   : ${contact.name}
-//     Age         : ${contact.age} years old
-//     Phone       : ${contact.phone}
-//     Email       : ${contact.email}
-//     Address     : ${contact.address.street}, ${contact.address.city}, ${
-//       contact.address.country
-//     }
-//     ${contact.isFavorited ? "Favorited" : ""}
-//   `);
-//   });
-// }
 
 function addContact(contactData) {
   const contacts = loadContacts();
