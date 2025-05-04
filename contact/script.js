@@ -1,33 +1,35 @@
 const dataContactsListElement = document.getElementById("data-contacts");
 
-let dataContacts = [
-  {
-    id: 1,
-    name: "Sia Billal Quba",
-    email: "siabillalquba@example.com",
-    phone: "+6281122334455",
-    address: {
-      street: "Jalan Ir Soekarno No. 17845",
-      city: "Batam",
-      country: "Indonesia",
-    },
-    age: 28,
-    isFavorited: true,
-  },
-  {
-    id: 2,
-    name: "Bacharuddin Jusuf Habibie",
-    email: "bjhabibie@example.com",
-    phone: "+6282233445566",
-    address: {
-      street: "Templergraben 55",
-      city: "Aachen",
-      country: "Germany",
-    },
-    age: 83,
-    isFavorited: false,
-  },
-];
+// ---------------------------------
+// Storage Function
+// ---------------------------------
+
+function saveContacts(contacts) {
+  localStorage.setItem("address-book", JSON.stringify(contacts));
+}
+
+function loadContacts() {
+  const contacts = localStorage.getItem("address-book");
+  if (!contacts) {
+    saveContacts([]);
+  }
+  try {
+    return JSON.parse(contacts);
+  } catch (error) {
+    console.error("Failed to load contacts", error);
+  }
+}
+
+function loadContactById(id) {
+  const contacts = loadContacts();
+  const contact = contacts.find((contact) => contact.id === id);
+
+  return contact;
+}
+
+// ---------------------------------
+// Function
+// ---------------------------------
 
 function getCurrentContactId() {
   const queryString = window.location.search;
@@ -39,8 +41,9 @@ function getCurrentContactId() {
 
 function renderContactById() {
   const id = getCurrentContactId();
-  const contacts = dataContacts;
-  const oneContact = contacts.find((oneContact) => oneContact.id === id);
+  //   const contacts = dataContacts;
+  //   const oneContact = contacts.find((oneContact) => oneContact.id === id);
+  const oneContact = loadContactById(id);
 
   dataContactsListElement.innerHTML = `
   <li>
@@ -66,4 +69,7 @@ function renderContactById() {
   </li>`;
 }
 
+// ---------------------------------
+// Program
+// ---------------------------------
 window.addEventListener("load", renderContactById);

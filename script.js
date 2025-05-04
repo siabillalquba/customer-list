@@ -44,27 +44,55 @@ let dataContacts = [
 ];
 
 // ---------------------------------
+// Storage Function
+// ---------------------------------
+
+function saveContacts(contacts) {
+  localStorage.setItem("address-book", JSON.stringify(contacts));
+}
+
+function loadContacts() {
+  const contacts = localStorage.getItem("address-book");
+  if (!contacts) {
+    saveContacts([]);
+  }
+  try {
+    return JSON.parse(contacts);
+  } catch (error) {
+    console.error("Failed to load contacts", error);
+  }
+}
+
+function loadContactById(id) {
+  const contacts = loadContacts();
+  const contact = contacts.find((contact) => contact.id === id);
+
+  return contact;
+}
+
+// ---------------------------------
 // Function
 // ---------------------------------
 
-function displayContacts(contacts) {
-  contacts.forEach((contact) => {
-    console.log(`
-    ID: ${contact.id}  
-    Full Name   : ${contact.name}
-    Age         : ${contact.age} years old
-    Phone       : ${contact.phone}
-    Email       : ${contact.email}
-    Address     : ${contact.address.street}, ${contact.address.city}, ${
-      contact.address.country
-    }
-    ${contact.isFavorited ? "Favorited" : ""}
-  `);
-  });
-}
+// function displayContacts(contacts) {
+//   contacts.forEach((contact) => {
+//     console.log(`
+//     ID: ${contact.id}
+//     Full Name   : ${contact.name}
+//     Age         : ${contact.age} years old
+//     Phone       : ${contact.phone}
+//     Email       : ${contact.email}
+//     Address     : ${contact.address.street}, ${contact.address.city}, ${
+//       contact.address.country
+//     }
+//     ${contact.isFavorited ? "Favorited" : ""}
+//   `);
+//   });
+// }
 
 function addContact(contactData) {
-  const lastContact = dataContacts[dataContacts.length - 1];
+  const contacts = loadContacts();
+  const lastContact = contacts[dataContacts.length - 1];
   const lastID = lastContact.id;
   const nextID = lastID + 1;
 
@@ -72,7 +100,10 @@ function addContact(contactData) {
     id: nextID,
     ...contactData,
   };
-  dataContacts.push(newContactData);
+  // dataContacts.push(newContactData);
+  const updatedContacts = [...contacts, newContactData];
+  saveContacts(updatedContacts);
+  contactFormElement.reset();
 }
 
 function searchContacts(contacts, keyword) {
@@ -101,23 +132,25 @@ function deleteContactById(favorited, id) {
   renderContacts();
 }
 
-function updateContactById(id, updatedContactData) {
-  const updatedDataContacts = dataContacts.map((oneContact) => {
-    if (oneContact.id === id) {
-      return {
-        ...oneContact,
-        ...updatedContactData,
-      };
-    } else {
-      return oneContact;
-    }
-  });
-  console.log(`Updated contact id: ${id}`);
-  dataContacts = updatedDataContacts;
-}
+// function updateContactById(id, updatedContactData) {
+//   const updatedDataContacts = dataContacts.map((oneContact) => {
+//     if (oneContact.id === id) {
+//       return {
+//         ...oneContact,
+//         ...updatedContactData,
+//       };
+//     } else {
+//       return oneContact;
+//     }
+//   });
+//   console.log(`Updated contact id: ${id}`);
+//   dataContacts = updatedDataContacts;
+// }
 
 function renderContacts() {
-  dataContactsListElement.innerHTML = dataContacts
+  const contacts = loadContacts();
+
+  dataContactsListElement.innerHTML = contacts
     .map((oneContact) => {
       return `
 <li>
@@ -168,7 +201,8 @@ function submitContact(event) {
 // ---------------------------------
 // Program
 // ---------------------------------
+saveContacts(dataContacts);
 
 contactFormElement.addEventListener("submit", submitContact);
 
-renderContacts();
+window.addEventListener("load", renderContacts);
